@@ -27,7 +27,7 @@ INITIAL_INCIDENTS = [
         "reported": "09:10 AM",
         "priority": "P1 - Critical",
         "status": "Investigating",
-        "analyst": "Macharam Deepthi",
+        "analyst": "Security Analyst",
         "reputation": "12/100 (Untrusted)",
         "aiExplanation": "Spearphishing attempt originating from a public webmail domain. The email contains high-urgency directives, and the destination link points to a lookalike authentication portal designed to capture credentials.",
         "urls": [

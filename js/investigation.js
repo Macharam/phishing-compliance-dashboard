@@ -130,7 +130,7 @@ function loadInvestigation() {
                     <div class="workbench-select-group">
                         <label for="analyst">Assigned</label>
                         <select id="analyst">
-                            <option>Macharam Deepthi</option>
+                            <option>Security Analyst</option>
                             <option>John Smith</option>
                             <option>Sarah Johnson</option>
                             <option>David Miller</option>

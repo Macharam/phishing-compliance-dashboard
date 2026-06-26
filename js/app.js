@@ -316,7 +316,7 @@ window.submitManualIncident = function() {
         reported: formattedTime,
         priority: risk === "Critical" ? "P1 - Critical" : risk === "High" ? "P2 - High" : risk === "Medium" ? "P3 - Medium" : "P4 - Low",
         status: "Open",
-        analyst: "Macharam Deepthi",
+        analyst: "Security Analyst",
         reputation: "Unknown (Manual Entry)",
         aiExplanation: "Manual security incident log filed by Security Analyst from Quick Actions panel.",
         urls: [],

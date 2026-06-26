@@ -8,7 +8,7 @@ function addAuditLog(action, status) {
 
     const log = {
         time: localTime,
-        analyst: "Macharam Deepthi",
+        analyst: "Security Analyst",
         action: action,
         status: status
     };

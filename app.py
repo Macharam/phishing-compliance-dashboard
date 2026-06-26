@@ -378,8 +378,9 @@ if __name__ == '__main__':
     load_json(COMPLIANCE_FILE, INITIAL_COMPLIANCE)
     load_json(STATS_FILE, INITIAL_STATS)
     
+    port = int(os.environ.get("PORT", 5000))
     print("--------------------------------------------------")
     print("PhishGuard Security Dashboard Backend Running...")
-    print("URL: http://127.0.0.1:5000")
+    print(f"URL: http://0.0.0.0:{port}")
     print("--------------------------------------------------")
-    app.run(host='127.0.0.1', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)

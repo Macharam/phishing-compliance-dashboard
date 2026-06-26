@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishGuard SOC Platform</title>
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Design Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <div class="app">
+        <!-- Collapsible Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="logo-area">
+                <div class="logo-box">
+                    <i data-lucide="shield-alert"></i>
+                </div>
+                <div class="logo-text">
+                    <h2>PhishGuard</h2>
+                    <p>SOC Platform v2.4</p>
+                </div>
+            </div>
+            
+            <nav>
+                <button class="nav-btn active" data-page="dashboard">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-btn" data-page="analyzer">
+                    <i data-lucide="mail-search"></i>
+                    <span>Phishing Analyzer</span>
+                </button>
+                <button class="nav-btn" data-page="investigation">
+                    <i data-lucide="scan-line"></i>
+                    <span>Investigation</span>
+                </button>
+                <button class="nav-btn" data-page="compliance">
+                    <i data-lucide="shield-check"></i>
+                    <span>Compliance</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="footer-actions">
+                    <button class="icon-action-btn" id="themeToggleBtn" title="Theme Toggle">
+                        <i data-lucide="sun"></i>
+                    </button>
+                    <button class="icon-action-btn" id="settingsBtn" title="Settings">
+                        <i data-lucide="settings"></i>
+                    </button>
+                    <button class="icon-action-btn" id="notificationsBtn" title="Notifications">
+                        <div class="badge-dot-container">
+                            <i data-lucide="bell"></i>
+                            <span class="bell-badge"></span>
+                        </div>
+                    </button>
+                </div>
+                
+                <div class="user-profile-widget">
+                    <div class="user-avatar-wrapper">
+                        <div class="user-avatar">MD</div>
+                        <span class="user-status-dot"></span>
+                    </div>
+                    <div class="user-info-text">
+                        <strong>Macharam Deepthi</strong>
+                        <small>Security Analyst</small>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Window Content Wrapper -->
+        <main class="main-content">
+            <header id="dashboardTopbar" class="topbar">
+                <div class="topbar-left">
+                    <button class="sidebar-toggle-btn" id="sidebarToggle" title="Toggle Navigation Menu">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <div class="search-wrapper">
+                        <i data-lucide="search"></i>
+                        <input type="text" class="search-bar" id="globalSearchInput" placeholder="Search threats, incidents, domains, IOCs...">
+                        <span class="search-shortcut">⌘K</span>
+                        <div class="dropdown-menu" id="globalSearchDropdown" style="width: 100%; top: 38px; left: 0; max-height: 240px; overflow-y: auto;"></div>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <div class="backend-status-badge" id="backendStatus">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Backend: Connecting...</span>
+                    </div>
+                    <div class="topbar-clock" id="topbarClock">UTC --:--:--</div>
+                    <button class="quick-action-btn" id="quickActionBtn">
+                        <i data-lucide="plus-circle"></i>
+                        <span>Quick Actions</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dynamic Content Container -->
+            <section id="content">
+                <!-- Skeleton loader shown by default on view switches -->
+                <div class="skeleton-layout" style="display:none;">
+                    <div class="skeleton-title skeleton-shimmer"></div>
+                    <div class="cards-grid-kpi">
+                        <div class="skeleton-card skeleton-shimmer"></div>
+                        <div class="skeleton-card skeleton-shimmer"></div>
+                        <div class="skeleton-card skeleton-shimmer"></div>
+                        <div class="skeleton-card skeleton-shimmer"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Quick Actions Dropdown -->
+    <div class="dropdown-menu" id="quickActionsDropdown">
+        <button onclick="triggerQuickAction('scan')">
+            <i data-lucide="play" style="width:14px; height:14px;"></i>
+            <span>Run Sandbox Scan</span>
+        </button>
+        <button onclick="triggerQuickAction('incident')">
+            <i data-lucide="plus" style="width:14px; height:14px;"></i>
+            <span>Log Manual Incident</span>
+        </button>
+        <button onclick="triggerQuickAction('export')">
+            <i data-lucide="download" style="width:14px; height:14px;"></i>
+            <span>Export Session Audits</span>
+        </button>
+        <button onclick="triggerQuickAction('health')">
+            <i data-lucide="heart-pulse" style="width:14px; height:14px;"></i>
+            <span>System Health Check</span>
+        </button>
+    </div>
+
+    <!-- Notifications Dropdown -->
+    <div class="dropdown-menu" id="notificationsDropdown">
+        <div class="dropdown-header">System Notifications</div>
+        <div class="dropdown-item unread" onclick="clearNotification(this)">
+            <strong>INC-2026-005 Escalated</strong>
+            <small>Risk score increased to Medium by ML sandbox.</small>
+        </div>
+        <div class="dropdown-item" onclick="clearNotification(this)">
+            <strong>Compliance Audit Notice</strong>
+            <small>SOC 2 compliance assessment due in 12 days.</small>
+        </div>
+        <div class="dropdown-item" onclick="clearNotification(this)">
+            <strong>Threat Database Synced</strong>
+            <small>148 new phishing heuristics signatures loaded.</small>
+        </div>
+    </div>
+
+    <!-- Settings Configuration Modal -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Platform Configuration Settings</h3>
+                <button class="icon-action-btn" onclick="closeModal('settingsModal')">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-toggle">
+                    <label>
+                        <input type="checkbox" id="aiHeuristicsOpt" checked>
+                        <span>Enable AI Heuristics Analysis Engine</span>
+                    </label>
+                </div>
+                <div class="setting-toggle">
+                    <label>
+                        <input type="checkbox" id="autoQuarantineOpt" checked>
+                        <span>SMTP Gateway Quarantine on High Risk</span>
+                    </label>
+                </div>
+                <div class="setting-toggle">
+                    <label>
+                        <input type="checkbox" id="isolateExeOpt" checked>
+                        <span>Auto-isolate Executable Attachments</span>
+                    </label>
+                </div>
+                <div class="setting-toggle">
+                    <label>
+                        <input type="checkbox" id="forceHttpsOpt">
+                        <span>Force HTTPS Protocol for Scanned Links</span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-action-workbench glass" onclick="closeModal('settingsModal')" style="width:auto; padding: 0 16px;">Cancel</button>
+                <button class="btn-primary" onclick="saveSettings()" style="width:auto; padding: 0 16px; height: 38px;">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manual Incident Entry Modal -->
+    <div class="modal-overlay" id="manualIncidentModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Log Manual Incident Report</h3>
+                <button class="icon-action-btn" onclick="closeModal('manualIncidentModal')">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="manualSubject">Email Subject</label>
+                    <input type="text" id="manualSubject" placeholder="e.g., Suspicious Invoice Receipt #9981">
+                </div>
+                <div class="form-group" style="margin-top:12px;">
+                    <label for="manualSender">Sender Address</label>
+                    <input type="email" id="manualSender" placeholder="e.g., accounts@billing-corp.com">
+                </div>
+                <div class="form-group" style="margin-top:12px;">
+                    <label for="manualRisk">Risk Severity Level</label>
+                    <select id="manualRisk">
+                        <option value="Critical">Critical Severity</option>
+                        <option value="High">High Severity</option>
+                        <option value="Medium">Medium Severity</option>
+                        <option value="Low">Low Severity</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-action-workbench glass" onclick="closeModal('manualIncidentModal')" style="width:auto; padding: 0 16px;">Cancel</button>
+                <button class="btn-primary" onclick="submitManualIncident()" style="width:auto; padding: 0 16px; height: 38px;">Create Case</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page rendering logic files -->
+    <script src="js/dashboard.js"></script>
+    <script src="js/analyzer.js"></script>
+    <script src="js/audit.js"></script>
+    <script src="js/investigation.js"></script>
+    <script src="js/compliance.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

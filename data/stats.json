@@ -1,0 +1,113 @@
+{
+    "default": [
+        {
+            "title": "Total Employees",
+            "value": "248",
+            "icon": "users",
+            "trend": "0.0%",
+            "trendType": "neutral"
+        },
+        {
+            "title": "Active Threats",
+            "value": "12",
+            "icon": "shield-alert",
+            "trend": "+4% from yesterday",
+            "trendType": "negative"
+        },
+        {
+            "title": "Compliance Score",
+            "value": "96%",
+            "icon": "shield-check",
+            "trend": "+0.8% this week",
+            "trendType": "positive"
+        },
+        {
+            "title": "Training Completion",
+            "value": "87%",
+            "icon": "graduation-cap",
+            "trend": "+1.2% this month",
+            "trendType": "positive"
+        },
+        {
+            "title": "Resolved Incidents",
+            "value": "145",
+            "icon": "check-circle",
+            "trend": "+12 since Monday",
+            "trendType": "positive"
+        }
+    ],
+    "staging": [
+        {
+            "title": "Total Employees",
+            "value": "45",
+            "icon": "users",
+            "trend": "0.0%",
+            "trendType": "neutral"
+        },
+        {
+            "title": "Active Threats",
+            "value": "3",
+            "icon": "shield-alert",
+            "trend": "-1 from yesterday",
+            "trendType": "positive"
+        },
+        {
+            "title": "Compliance Score",
+            "value": "98%",
+            "icon": "shield-check",
+            "trend": "+1.2% this week",
+            "trendType": "positive"
+        },
+        {
+            "title": "Training Completion",
+            "value": "87%",
+            "icon": "graduation-cap",
+            "trend": "+1.2% this month",
+            "trendType": "positive"
+        },
+        {
+            "title": "Resolved Incidents",
+            "value": "145",
+            "icon": "check-circle",
+            "trend": "+12 since Monday",
+            "trendType": "positive"
+        }
+    ],
+    "emea": [
+        {
+            "title": "Total Employees",
+            "value": "850",
+            "icon": "users",
+            "trend": "0.0%",
+            "trendType": "neutral"
+        },
+        {
+            "title": "Active Threats",
+            "value": "29",
+            "icon": "shield-alert",
+            "trend": "+8 from yesterday",
+            "trendType": "negative"
+        },
+        {
+            "title": "Compliance Score",
+            "value": "94%",
+            "icon": "shield-check",
+            "trend": "-0.5% this week",
+            "trendType": "negative"
+        },
+        {
+            "title": "Training Completion",
+            "value": "87%",
+            "icon": "graduation-cap",
+            "trend": "+1.2% this month",
+            "trendType": "positive"
+        },
+        {
+            "title": "Resolved Incidents",
+            "value": "145",
+            "icon": "check-circle",
+            "trend": "+12 since Monday",
+            "trendType": "positive"
+        }
+    ]
+}

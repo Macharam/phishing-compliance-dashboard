@@ -1,0 +1,317 @@
+[
+    {
+        "subject": "Alert: Suspicious Invoice #8Alert: Suspicious Invoice #8812812",
+        "sender": "invoices@amaz0n-support.co",
+        "domain": "amaz0n-support.co",
+        "risk": "High",
+        "reported": "11:25 AM",
+        "priority": "P2 - High",
+        "status": "Open",
+        "analyst": "Macharam Deepthi",
+        "reputation": "Unknown (Manual Entry)",
+        "aiExplanation": "Manual security incident log filed by Security Analyst from Quick Actions panel.",
+        "urls": [],
+        "attachments": [],
+        "attackChain": {
+            "sender": "warning",
+            "gateway": "safe",
+            "inbox": "safe",
+            "action": "warning"
+        },
+        "mitre": [],
+        "timeline": [
+            {
+                "time": "11:25 AM",
+                "desc": "Manual incident entry logged",
+                "important": true
+            }
+        ],
+        "id": "INC-2026-006"
+    },
+    {
+        "id": "INC-2026-001",
+        "subject": "URGENT Password Reset",
+        "sender": "security@gmail.com",
+        "domain": "gmail.com",
+        "risk": "Critical",
+        "reported": "09:10 AM",
+        "priority": "P1 - Critical",
+        "status": "Investigating",
+        "analyst": "Macharam Deepthi",
+        "reputation": "12/100 (Untrusted)",
+        "aiExplanation": "Spearphishing attempt originating from a public webmail domain. The email contains high-urgency directives, and the destination link points to a lookalike authentication portal designed to capture credentials.",
+        "urls": [
+            {
+                "link": "https://verification-microsoft.net/login",
+                "risk": "Critical"
+            }
+        ],
+        "attachments": [],
+        "attackChain": {
+            "sender": "malicious",
+            "gateway": "warning",
+            "inbox": "safe",
+            "action": "malicious"
+        },
+        "mitre": [
+            {
+                "tactic": "Initial Access",
+                "technique": "Spearphishing Link (T1566.002)"
+            },
+            {
+                "tactic": "Credential Access",
+                "technique": "Input Capture (T1056)"
+            }
+        ],
+        "timeline": [
+            {
+                "time": "09:10 AM",
+                "desc": "User reported suspicious security reset email",
+                "important": true
+            },
+            {
+                "time": "09:12 AM",
+                "desc": "Automated ML sandbox flagged high-risk score (85/100)",
+                "important": false
+            },
+            {
+                "time": "09:15 AM",
+                "desc": "Security analyst assigned; console logs loaded",
+                "important": false
+            },
+            {
+                "time": "09:20 AM",
+                "desc": "Awaiting analyst confirmation and domain blockade",
+                "important": false
+            }
+        ]
+    },
+    {
+        "id": "INC-2026-002",
+        "subject": "Payroll Update Request",
+        "sender": "payroll@company-payroll.com",
+        "domain": "company-payroll.com",
+        "risk": "High",
+        "reported": "08:45 AM",
+        "priority": "P2 - High",
+        "status": "Open",
+        "analyst": "John Smith",
+        "reputation": "28/100 (Suspicious)",
+        "aiExplanation": "Financial spoofing payload. The sender domain company-payroll.com is a typosquatted lookalike domain. A macro-enabled spreadsheet has been attached, mimicking an official financial spreadsheet.",
+        "urls": [
+            {
+                "link": "http://company-payroll.com/updates-q2",
+                "risk": "High"
+            }
+        ],
+        "attachments": [
+            {
+                "name": "payroll_update_q2.xlsm",
+                "risk": "High"
+            }
+        ],
+        "attackChain": {
+            "sender": "malicious",
+            "gateway": "malicious",
+            "inbox": "safe",
+            "action": "warning"
+        },
+        "mitre": [
+            {
+                "tactic": "Initial Access",
+                "technique": "Spearphishing Attachment (T1566.001)"
+            },
+            {
+                "tactic": "Execution",
+                "technique": "User Execution: Malicious File (T1204.002)"
+            }
+        ],
+        "timeline": [
+            {
+                "time": "08:45 AM",
+                "desc": "Email gateway intercepted macro attachment",
+                "important": true
+            },
+            {
+                "time": "08:47 AM",
+                "desc": "Sandbox isolated file and identified VBA script calls",
+                "important": false
+            },
+            {
+                "time": "08:52 AM",
+                "desc": "Incident categorized as P2 - High Risk spoofer",
+                "important": false
+            }
+        ]
+    },
+    {
+        "id": "INC-2026-003",
+        "subject": "Q3 Planning Meeting",
+        "sender": "hr@company.com",
+        "domain": "company.com",
+        "risk": "Low",
+        "reported": "07:30 AM",
+        "priority": "P4 - Low",
+        "status": "Resolved",
+        "analyst": "Sarah Johnson",
+        "reputation": "98/100 (Safe)",
+        "aiExplanation": "Legitimate email meeting standard internal authentication parameters. Both SPF, DKIM, and DMARC checks passed cleanly. No threat detected.",
+        "urls": [
+            {
+                "link": "https://teams.microsoft.com/j/91283",
+                "risk": "Safe"
+            }
+        ],
+        "attachments": [
+            {
+                "name": "meeting_agenda.pdf",
+                "risk": "Safe"
+            }
+        ],
+        "attackChain": {
+            "sender": "safe",
+            "gateway": "safe",
+            "inbox": "safe",
+            "action": "safe"
+        },
+        "mitre": [],
+        "timeline": [
+            {
+                "time": "07:30 AM",
+                "desc": "Employee reported email using HR template",
+                "important": false
+            },
+            {
+                "time": "07:32 AM",
+                "desc": "SPF/DKIM verified sender identity successfully",
+                "important": false
+            },
+            {
+                "time": "07:35 AM",
+                "desc": "No indicators found; incident closed as false positive",
+                "important": false
+            }
+        ]
+    },
+    {
+        "id": "INC-2026-004",
+        "subject": "Microsoft Access Denied",
+        "sender": "support@microsoft-login.com",
+        "domain": "microsoft-login.com",
+        "risk": "Critical",
+        "reported": "10:05 AM",
+        "priority": "P1 - Critical",
+        "status": "Contained",
+        "analyst": "David Miller",
+        "reputation": "5/100 (Hostile)",
+        "aiExplanation": "Severe credential harvesting threat. Directs users to an insecure landing page hosted on a raw IP address and embeds a malicious executable binary disguised as a security update.",
+        "urls": [
+            {
+                "link": "http://192.168.4.1/auth/identity",
+                "risk": "Critical"
+            }
+        ],
+        "attachments": [
+            {
+                "name": "update_patch_x64.exe",
+                "risk": "Critical"
+            }
+        ],
+        "attackChain": {
+            "sender": "malicious",
+            "gateway": "malicious",
+            "inbox": "warning",
+            "action": "malicious"
+        },
+        "mitre": [
+            {
+                "tactic": "Initial Access",
+                "technique": "Spearphishing Link & Attachment (T1566)"
+            },
+            {
+                "tactic": "Defense Evasion",
+                "technique": "Masquerading (T1036)"
+            }
+        ],
+        "timeline": [
+            {
+                "time": "10:05 AM",
+                "desc": "Multiple users flagged login update request",
+                "important": true
+            },
+            {
+                "time": "10:07 AM",
+                "desc": "Gateway detected executable payload attachment",
+                "important": false
+            },
+            {
+                "time": "10:12 AM",
+                "desc": "Firewall rule created blocking raw IP: 192.168.4.1",
+                "important": false
+            },
+            {
+                "time": "10:15 AM",
+                "desc": "Password reset sequence triggered for targeted users",
+                "important": false
+            }
+        ]
+    },
+    {
+        "id": "INC-2026-005",
+        "subject": "Amazon Invoice #9182",
+        "sender": "accounts@amazon-support.co",
+        "domain": "amazon-support.co",
+        "risk": "Medium",
+        "reported": "11:20 AM",
+        "priority": "P3 - Medium",
+        "status": "Open",
+        "analyst": "Emily Clark",
+        "reputation": "45/100 (Unverified)",
+        "aiExplanation": "E-commerce impersonation attempt. The sender domain amazon-support.co is unverified. Links redirect via shortened tinyurl targets, prompting users to confirm a fraudulent balance sheet.",
+        "urls": [
+            {
+                "link": "http://tinyurl.com/invoice-amazon",
+                "risk": "Medium"
+            }
+        ],
+        "attachments": [
+            {
+                "name": "invoice_9182.pdf",
+                "risk": "Medium"
+            }
+        ],
+        "attackChain": {
+            "sender": "warning",
+            "gateway": "warning",
+            "inbox": "safe",
+            "action": "warning"
+        },
+        "mitre": [
+            {
+                "tactic": "Initial Access",
+                "technique": "Spearphishing Link (T1566.002)"
+            },
+            {
+                "tactic": "Obfuscation",
+                "technique": "Obfuscated Files or Information (T1027)"
+            }
+        ],
+        "timeline": [
+            {
+                "time": "11:20 AM",
+                "desc": "Spam trap caught unverified Amazon billing email",
+                "important": true
+            },
+            {
+                "time": "11:22 AM",
+                "desc": "URL analysis flagged redirect shortening domain",
+                "important": false
+            },
+            {
+                "time": "11:25 AM",
+                "desc": "Assigned for manual analyst inspection",
+                "important": false
+            }
+        ]
+    }
+]
